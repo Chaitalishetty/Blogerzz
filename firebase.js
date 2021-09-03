@@ -18,6 +18,18 @@ const firebaseConfig = {
       let username=document.getElementById("username").value;
       let email=document.getElementById("email").value;
       let password=document.getElementById("password").value;
+      firebase.database().ref("users").once("value",function(snapshot){
+            snapshot.forEach(function(childSnapshot){
+                var childKey=childSnapshot.key;
+                var childValue=childSnapshot.val();
+                if (childValue["username"]==username || childValue["email"]==email){
+                   alert("This email is already taken");
+                }
+                else{
+                    saveUserData(username,email,password);
+                }
+            });
+        });  
       function saveUserData(username,email,password){
           let newUsers=users.push();
           newUsers.set({
@@ -29,7 +41,6 @@ const firebaseConfig = {
           window.location.href="login.html";
           
       }
-      saveUserData(username,email,password);
       
   }
 
@@ -55,7 +66,7 @@ const firebaseConfig = {
             });
             if (flag==1){
                 alert("You are logged in !!!")
-                window.location.href="blog.html";
+                window.location.href="home.html";
             }
             else{
                 alert("Enter correct username and password");
@@ -103,6 +114,9 @@ const firebaseConfig = {
                 
                 let displayBlog=childValue["heading"]+childValue["blogtext"]+childValue["date"]
                 document.querySelector(".posts").innerHTML+=displayBlog;
+            }
+            else if(childValue["status"=="private"]){
+                
             }
         });
     });

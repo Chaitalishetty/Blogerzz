@@ -3,23 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="styles.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <div id="Blog"></div>
-    <script>var key=window.location.search;
-    var postskey=key.split(0,2);
+
+    <div id="Blog">
+        <h1 id="header"></h1>
+        <h5 id="dateTime"></h5>
+        <div id="content"></div>
+
+    </div>
+    <div id="commentsSection">
+        <div>
+            <h5 id="commentor"></h5>
+            <input type="text" id="comment_content" placeholder="Enter your comments here.."/>
+            <button id="post_comment" onclick="postComment()">Post</button>
+        </div>
+        <div id="display_comments">
+            <div id="comment_user"></div>
+            <div id="comment_text"></div>
+        </div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+    <script src="firebase.js"></script>  
+    <script>var linkkey=window.location.search;
+    var postskey=linkkey.slice(1,);
     firebase.database().ref("blogs").once("value",function(snapshot){
         snapshot.forEach(function(childSnapshot){
             var childKey=childSnapshot.key;
             var childValue=childSnapshot.val();
-            document.getElementById("Blog").innerHTML+=childKey;
+            // document.getElementById("Blog").innerHTML+=childKey+postskey+'</br>';
             if(childKey==postskey){
-                alert("ya they match");
+                document.getElementById("header").innerHTML=childValue["heading"];
+                document.getElementById("content").innerHTML=childValue["blogtext"];
+                document.getElementById("dateTime").innerHTML=Date(childValue["date"]);
+                if(childValue["status"]=="public"){
+                    document.getElementById("commentsSection").style.display="block";
+                }
             }
         });
     });
+    
+    var commentor=sessionStorage.getItem("username");
+    document.getElementById("commentor").innerHTML=commentor;
+    let comments=firebase.database().ref("comments");
+    let commentText=document.getElementById("comment_content").value;
+    function postComment(){
+        function addComment(commentor,commentText,postskey){
+            let newComments=comments.push();
+        newComments.set({
+            commentor:commentor,
+            commentText:commentText,
+            blogkey:postskey,
+        });
+        alert("Your comment is posted!");
+        }
+        addComment(commentor,commentText,postskey)
+    }
+    function dispComment(){
+        firebase.database().ref("comments").once("value",function(snapshot){
+            snapshot.forEach(function(childSnapshot){
+                var childKey=childSnapshot.key;
+                var childValue=childSnapshot.val();
+                if(postskey==childValue["blogkey"]){
+                    let displaying='<div id="comment_user">'+childValue["commentor"]+'</div><div id="comment_text">'+childValue["commentText"]+'';
+                    document.getElementById("comment_user").innerHTML+=displaying;
+
+
+                }
+            });
+        });
+    }
+    dispComment();
     </script>
 
 </body>
