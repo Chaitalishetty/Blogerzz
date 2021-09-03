@@ -1,3 +1,11 @@
 #commentsSection{
     display: none;
 }
+.disposts{
+    width:80vw
+}
+.card{
+    width: 50vw;
+    margin: 20px;
+    text-align: center;
+}

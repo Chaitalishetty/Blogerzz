@@ -29,7 +29,7 @@ const firebaseConfig = {
                     saveUserData(username,email,password);
                 }
             });
-        });  
+        });
       function saveUserData(username,email,password){
           let newUsers=users.push();
           newUsers.set({

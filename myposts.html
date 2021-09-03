@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="styles.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feed</title>
+    <title>Your Posts</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -19,10 +17,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="home.html" aria-current="page">Feed</a>
+                        <a class="nav-link" href="home.html" aria-current="page">Feed</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="myposts.html" >Your posts</a>
+                        <a class="nav-link active" href="myposts.html" aria-current="page" >Your posts</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="blog.html" >Add blog</a>
@@ -31,27 +29,5 @@
             </div>
         </div> 
     </nav>
-    <div class="posts me-auto mb-2 mb-lg-0">
-        
-    </div>
-    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
-    <script src="firebase.js"></script>  
-    <script>showPosts();
-    function showPosts(){
-    firebase.database().ref("blogs").once("value",function(snapshot){
-        snapshot.forEach(function(childSnapshot){
-            var childKey=childSnapshot.key;
-            var childValue=childSnapshot.val();
-            if(childValue["status"]=="public"){
-                let displayBlog='<div class="card"><h1>'+childValue["heading"]+'</h1></br><h3>'+childValue["blogtext"]+'</h3>'+'<h6>Written By '+childValue["author"]+'</h6><h6>'+Date(childValue["date"])+`</h6><a href="posts.html?`+childKey+`">see more</a></div>`;
-                document.querySelector(".posts").innerHTML+=displayBlog;
-
-            }
-        });
-    });
-    }   
-    </script>
-
 </body>
-
 </html>
