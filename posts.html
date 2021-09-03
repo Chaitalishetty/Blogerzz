@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Blog"></div>
+    <script>var key=window.location.search;
+    var postskey=key.split(0,2);
+    firebase.database().ref("blogs").once("value",function(snapshot){
+        snapshot.forEach(function(childSnapshot){
+            var childKey=childSnapshot.key;
+            var childValue=childSnapshot.val();
+            document.getElementById("Blog").innerHTML+=childKey;
+            if(childKey==postskey){
+                alert("ya they match");
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>

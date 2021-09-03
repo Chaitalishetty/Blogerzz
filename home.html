@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="posts">
+        
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+    <script src="firebase.js"></script>  
+    <script>showPosts();
+    function showPosts(){
+    firebase.database().ref("blogs").once("value",function(snapshot){
+        snapshot.forEach(function(childSnapshot){
+            var childKey=childSnapshot.key;
+            var childValue=childSnapshot.val();
+            if(childValue["status"]=="public"){
+                let displayBlog=childValue["heading"]+childValue["blogtext"]+Date(childValue["date"])
+                document.querySelector(".posts").innerHTML+=displayBlog;
+                document.querySelector(".posts").innerHTML+=`<a href="posts.html?`+childKey+`">see more</a>`;
+            }
+        });
+    });
+    }   
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+        <input type="text" placeholder="Heading" id="heading"/>
+        <textarea placeholder="Start writing....." id="blogtext"></textarea>
+        <input type="checkbox" value="private" id="checkbox"/><label>Make this blog private</label>
+        <button id="postBlog" onclick="postBlog()">Post</button>
+        <div id="op"></div>
+        
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+
+    <script src="firebase.js"></script>
+</body>
+
+</html>
