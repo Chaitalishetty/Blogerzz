@@ -5,12 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="icon" href="Bloggerzz icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a href="home.html" class="navbar-brand"><img src="Bloggerzz icon.png" width="50"/></a>
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,11 +34,14 @@
             </div>
         </div> 
     </nav>
-        <input type="text" placeholder="Heading" id="heading"/>
-        <textarea placeholder="Start writing....." id="blogtext"></textarea>
-        <input type="checkbox" value="private" id="checkbox"/><label>Make this blog private</label>
-        <button id="postBlog" onclick="postBlog()">Post</button>
+    <div class="blogwriting  me-auto ms-auto ">
+        <input type="text" placeholder="Blog name" id="heading" class="form-control"/>
+        <textarea placeholder="Start writing....." id="blogtext" class="form-control" rows="15"></textarea>
+        <input type="checkbox" value="private" id="checkbox" class="form-check-input"/><label class="form-check-label">&nbsp; Make this blog private</label></br></br>
+        <button id="postBlog" onclick="postBlog()" class="btn btn-primary">Post</button>
         <div id="op"></div>
+    </div>
+        
         
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
 
