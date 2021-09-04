@@ -30,6 +30,7 @@
                         <a class="nav-link" href="blog.html" >Add blog</a>
                     </li>
                 </ul>
+                <a href="login.html" class="btn btn-light">Logout</a>
             </div>
         </div> 
     </nav>
@@ -52,7 +53,7 @@
             var childKey=childSnapshot.key;
             var childValue=childSnapshot.val();
             if(childValue["status"]=="public"){
-                let displayBlog='<div class="card"><h1>'+childValue["heading"]+'</h1></br><h3>'+childValue["blogtext"]+'</h3>'+'<h6>Written By '+childValue["author"]+'</h6><h6>'+Date(childValue["date"]).slice(0,25)+`</h6><a href="posts.html?`+childKey+`">see more</a></div>`;
+                let displayBlog='<div class="card"><h1>'+childValue["heading"]+'</h1></br><h3>'+childValue["blogtext"]+'</h3>'+'<h6>Written By '+childValue["author"]+'</h6><h6>'+Date(childValue["date"]).slice(0,25)+`</h6><a class="ms-auto" href="posts.html?`+childKey+`">see more</a></div>`;
                 document.querySelector(".posts").innerHTML+=displayBlog;
 
             }
@@ -60,7 +61,7 @@
                 var sessusername=sessionStorage.getItem("username");
                 if(childValue["author"]==sessusername){
                     newDate=Date((childValue["date"]));
-                    let displayBlogPriv='<div class="card" style="width:30vw"><h1>'+childValue["heading"]+'</h1></br><h3>'+childValue["blogtext"]+'</h3>'+'<h6>Written By '+childValue["author"]+'</h6><h6>'+Date(childValue["date"]).slice(0,25)+`</h6><a href="posts.html?`+childKey+`">see more</a></div>`;
+                    let displayBlogPriv='<div class="card" style="width:30vw"><h1>'+childValue["heading"]+'</h1></br><h3>'+childValue["blogtext"]+'</h3>'+'<h6>Written By '+childValue["author"]+'</h6><h6>'+Date(childValue["date"]).slice(0,25)+`</h6><a class="ms-auto" href="posts.html?`+childKey+`">see more</a></div>`;
                     document.querySelector(".private-card").innerHTML+=displayBlogPriv;
                 }
                 else{

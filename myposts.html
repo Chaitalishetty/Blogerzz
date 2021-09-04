@@ -60,7 +60,7 @@
                 if(childValue["author"]==sessusername){
                   
                     total=total+1;                  
-                    let displayBlogPriv='<div class="card"><h1>'+childValue["heading"]+'</h1></br><h3>'+childValue["blogtext"]+'</h3>'+'<h6>Written By '+childValue["author"]+'</h6><h6>'+Date(childValue["date"]).slice(0,25)+`</h6><a href="posts.html?`+childKey+`">see more</a></div>`;
+                    let displayBlogPriv='<div class="card"><h1>'+childValue["heading"]+'</h1></br><h3>'+childValue["blogtext"]+'</h3>'+'<h6>Written By '+childValue["author"]+'</h6><h6>'+Date(childValue["date"]).slice(0,25)+`</h6><a class="ms-auto" href="posts.html?`+childKey+`">see more</a></div>`;
                     document.querySelector(".myPosts").innerHTML+=displayBlogPriv;
                     if(childValue["status"]=="private"){
                         pu=pu+1;

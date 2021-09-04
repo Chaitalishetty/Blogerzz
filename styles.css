@@ -41,6 +41,13 @@ margin-left:10px;
     text-align: center;
     padding: 20px;
 }
+.card a{
+    background-color: #1416b0;
+    width:100px;
+    padding: 10px;
+    text-decoration: none;
+    color:white;
+}
 .card h3{
     max-height: 50px;
     overflow: hidden;
