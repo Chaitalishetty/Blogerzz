@@ -3,11 +3,35 @@ body{
     background-color: #e1e1e1!important;
     font-family: 'Ubuntu', sans-serif !important;
 }
+#register-page{
+    text-align:center;
+    background-color:black;
+    padding:20px;
+    position:relative;
+    top:60px;
+    color:white;
+    border-radius:20px;
+}
 #commentsSection{
     display: none;
+    width:80vw;
+    text-align:left;
+    font-size:20px;
+    padding-left:20px
 
 }
+#comm{
+    border-bottom: 1px solid #969696;
+    padding:10px;
+}
 
+.active{
+    background-color: white;
+color: black!important;
+}
+.nav-item{
+margin-left:10px;
+}
 .disposts{
     width:80vw
 }
@@ -31,9 +55,15 @@ body{
 }
 .blogwriting input{
     margin-top: 20px;
+    border:1px solid blue;
 }
-.blogwriting textarea,label{
+.blogwriting textarea{
     margin-top: 20px;
+    border:1px solid blue;
+}
+.blogwriting label{
+    margin-top: 20px;
+
 }
 .public_content{
     text-align: center;

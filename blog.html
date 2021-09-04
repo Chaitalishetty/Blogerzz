@@ -34,18 +34,54 @@
             </div>
         </div> 
     </nav>
-    <div class="blogwriting  me-auto ms-auto ">
+    <div class="blogwriting  me-auto ms-auto " style="margin-top:20px">
+        <h4 style="text-align:center;font-weight:bold">Happy Blogging!!</h4>
         <input type="text" placeholder="Blog name" id="heading" class="form-control"/>
-        <textarea placeholder="Start writing....." id="blogtext" class="form-control" rows="15"></textarea>
+        <textarea placeholder="Start writing....." id="blogtext" class="form-control" rows="14"></textarea>
         <input type="checkbox" value="private" id="checkbox" class="form-check-input"/><label class="form-check-label">&nbsp; Make this blog private</label></br></br>
-        <button id="postBlog" onclick="postBlog()" class="btn btn-primary">Post</button>
-        <div id="op"></div>
+        <div style="display: flex;justify-content: end; margin-right:10px">
+        <button id="postBlog" onclick="postBlog()" class="btn btn-primary" >Post</button>
+        </div>
     </div>
         
         
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
 
     <script src="firebase.js"></script>
+    <script>
+        function postBlog(){
+    let heading=document.getElementById("heading").value;
+    let blogtext=document.getElementById("blogtext").value;
+    let checkbox=document.getElementById("checkbox");
+    let status="";
+    if(checkbox.checked==true){
+        status="private"
+    }
+    else{
+        status="public"
+    }
+    if(heading!="" && blogtext!=""){
+        function blogSubmit(){
+        let newBlogs=blogs.push();
+        newBlogs.set({
+            heading:heading,
+            date:Date.now(),
+            blogtext:blogtext,
+            status:status,
+            author:sessionStorage.getItem("username")
+        });
+        alert("You blog is saved successfully");
+    }
+        blogSubmit();
+
+    }
+    else{
+        alert("You need to enter something");
+    }
+    
+
+  }
+    </script>
 </body>
 
 </html>

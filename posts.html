@@ -13,6 +13,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a href="home.html" class="navbar-brand"><img src="Bloggerzz icon.png" width="50"/></a>
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,13 +40,19 @@
             <h4 id="content" style="text-align: justify; margin: 20px;"></h4>
     
         </div>
-        <div id="commentsSection">
+        <div id="commentsSection"  class="me-auto ms-auto">
+            <br>
             <div>
                 <h5 id="commentor"></h5>
-                <input type="text" id="comment_content" placeholder="Enter your comments here.."/>
-                <button id="post_comment" onclick="postComment()">Post</button>
+                <div style="display:flex; width:50%;justify-content:space-between">
+                <input type="text" id="comment_content" class="form-control" placeholder="Enter your comments here.."/>
+                </br>
+                <button id="post_comment" class="btn btn-primary" onclick="postComment()">Post</button>
+                </div>
             </div>
+            </br>
             <div id="display_comments">
+                <h5>Comments</h5>
                 <div id="comment_user"></div>
                 <div id="comment_text"></div>
             </div>
@@ -78,16 +85,21 @@
     let comments=firebase.database().ref("comments");
     let commentText=document.getElementById("comment_content").value;
     function postComment(){
-        function addComment(commentor,commentText,postskey){
+        if(commentText!=""){
+            function addComment(commentor,commentText,postskey){
             let newComments=comments.push();
         newComments.set({
             commentor:commentor,
             commentText:commentText,
             blogkey:postskey,
         });
-        alert("Your comment is posted!");
+        alert("Your comment is posted! Refresh the page");
         }
         addComment(commentor,commentText,postskey)
+        }     
+        else{
+            alert("You need to add something");
+        }   
     }
     function dispComment(){
         firebase.database().ref("comments").once("value",function(snapshot){
@@ -95,7 +107,7 @@
                 var childKey=childSnapshot.key;
                 var childValue=childSnapshot.val();
                 if(postskey==childValue["blogkey"]){
-                    let displaying='<div id="comment_user">'+childValue["commentor"]+'</div><div id="comment_text">'+childValue["commentText"]+'</div>';
+                    let displaying='<div id="comm"><div id="comment_user" style="font-weight:bold">'+childValue["commentor"]+'</div><div id="comment_text">'+childValue["commentText"]+'</div></div>';
                     document.getElementById("comment_user").innerHTML+=displaying;
 
 
